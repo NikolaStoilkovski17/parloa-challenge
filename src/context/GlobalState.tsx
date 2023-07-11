@@ -21,8 +21,6 @@ interface IContext {
   setCustomers: (customers: Customer[]) => void;
   setFilteredCustomers: (customers: Customer[]) => void;
   setIsLoading: (isLoading: boolean) => void;
-  // filterCustomersByStatus: (isActive: boolean | null) => void;
-  // filterCustomersByIndustry: (industry: string | null) => void;
   filterCustomers: () => void;
   setFilteringFields: (
     field: Partial<{ isActive: boolean | null; industry: string | null }>
@@ -41,8 +39,6 @@ const initialState: State = {
   setCustomers: (customers: Customer[]) => null,
   setFilteredCustomers: (customers: Customer[]) => null,
   setIsLoading: (isLoading: boolean) => null,
-  // filterCustomersByStatus: (isActive: boolean | null) => null,
-  // filterCustomersByIndustry: (industry: string | null) => null,
   filterCustomers: () => null,
   setFilteringFields: (
     field: Partial<{ isActive: boolean | null; industry: string | null }>

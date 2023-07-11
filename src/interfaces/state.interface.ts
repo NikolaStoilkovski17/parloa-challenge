@@ -9,8 +9,6 @@ export interface State {
   setCustomers: (customers: Customer[]) => void;
   setFilteredCustomers: (customers: Customer[]) => void;
   setIsLoading: (isLoading: boolean) => void;
-  // filterCustomersByStatus: (isActive: boolean | null) => void;
-  // filterCustomersByIndustry: (industry: string | null) => void;
   filterCustomers: () => void;
   setFilteringFields: (
     field: Partial<{ isActive: boolean | null; industry: string | null }>

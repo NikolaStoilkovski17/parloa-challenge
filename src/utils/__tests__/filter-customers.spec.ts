@@ -1,9 +1,5 @@
 import { Customer } from "../../interfaces";
-import {
-  filterCustomersByIndustry,
-  filterCustomersByStatus,
-  getFilteredCustomers,
-} from "../filter-customers";
+import { getFilteredCustomers } from "../filter-customers";
 
 const mockedCustomers: Customer[] = [
   {
@@ -85,32 +81,3 @@ describe("getFilteredCustomers should", () => {
     expect(result).toEqual([mockedCustomers[0], mockedCustomers[4]]);
   });
 });
-
-// describe("filterCustomersByStatus", () => {
-//   it("should return active customers", () => {
-//     expect(filterCustomersByStatus(mockedCustomers, true)).toEqual([
-//       mockedCustomers[1],
-//       mockedCustomers[2],
-//       mockedCustomers[3],
-//     ]);
-//   });
-
-//   it("should return inactive customers", () => {
-//     expect(filterCustomersByStatus(mockedCustomers, false)).toEqual([
-//       mockedCustomers[0],
-//     ]);
-//   });
-// });
-
-// describe("filterCustomersByIndustry", () => {
-//   it("should return only customers from insurance industry", () => {
-//     expect(filterCustomersByIndustry(mockedCustomers, "insurance")).toEqual([
-//       mockedCustomers[2],
-//       mockedCustomers[3],
-//     ]);
-//   });
-
-//   it("should return empty array if the industry does not exist", () => {
-//     expect(filterCustomersByIndustry(mockedCustomers, "food")).toEqual([]);
-//   });
-// });

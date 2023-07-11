@@ -39,9 +39,6 @@ export const CustomersContainer = ({}: CustomersContainerProps) => {
   }, []);
 
   useEffect(() => {
-    console.log("filtered customers was updated");
-    // TO-DO: Update filtering options here on each customers change
-
     setFilteredCustomers(customers);
   }, [customers]);
 

@@ -1,9 +1,5 @@
 import { State } from "../interfaces";
-import {
-  getFilteredCustomers,
-  filterCustomersByIndustry,
-  filterCustomersByStatus,
-} from "../utils";
+import { getFilteredCustomers } from "../utils";
 
 export enum Actions {
   SET_CUSTOMERS = "SET_CUSTOMERS",
@@ -13,8 +9,6 @@ export enum Actions {
   DELETE_CUSTOMER = "DELETE_CUSTOMER",
   SET_IS_LOADING = "SET_IS_LOADING",
   FILTER_CUSTOMERS = "FILTER_CUSTOMERS",
-  // FILTER_CUSTOMERS_BY_STATUS = "FILTER_CUSTOMERS_BY_STATUS",
-  // FILTER_CUSTOMERS_BY_INDUSTRY = "FILTER_CUSTOMERS_BY_INDUSTRY",
   SET_FILTERING_FIELDS = "SET_FILTERING_FIELDS",
 }
 
@@ -62,9 +56,9 @@ export default (state: State, action: Action) => {
       return {
         ...state,
         customers: [...state.customers, action.payload],
-        // filteredCustomers: [...state.customers, action.payload],
       };
     case Actions.UPDATE_CUSTOMER:
+      // TO-DO: Extract as util
       const result = state.customers.map((customer) => {
         if (customer.id === action.payload.id) {
           return action.payload;
@@ -75,7 +69,6 @@ export default (state: State, action: Action) => {
       return {
         ...state,
         customers: result,
-        filteredCustomers: result,
       };
     case Actions.DELETE_CUSTOMER:
       const updatedCustomers = state.customers.filter(

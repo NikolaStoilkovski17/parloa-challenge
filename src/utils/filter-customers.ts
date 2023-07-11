@@ -22,25 +22,3 @@ export function getFilteredCustomers(
 
   return filteredCustomers;
 }
-
-export function filterCustomersByStatus(
-  customers: Customer[],
-  isActive: boolean
-) {
-  if (isActive === null) return customers;
-
-  return customers.filter(
-    (customer: Customer) => customer.isActive === isActive
-  );
-}
-
-export function filterCustomersByIndustry(
-  customers: Customer[],
-  industry: string
-) {
-  if (industry === null) return customers;
-
-  return customers.filter(
-    (customer: Customer) => customer.industry === industry
-  );
-}
