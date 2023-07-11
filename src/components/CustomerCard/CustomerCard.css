@@ -1,0 +1,11 @@
+.text-capitalise {
+  text-transform: capitalize;
+}
+
+.mr-2 {
+  margin-right: 0.5rem;
+}
+
+.active-customer {
+  color: green;
+}

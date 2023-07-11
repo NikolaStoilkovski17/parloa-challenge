@@ -1,0 +1,8 @@
+.wrapper {
+  max-width: 80%;
+  margin: 0 auto 2rem auto;
+}
+
+.MuiButton-root {
+  text-transform: capitalize !important;
+}
