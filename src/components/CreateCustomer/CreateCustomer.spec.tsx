@@ -38,4 +38,13 @@ describe("CreateCustomer should", () => {
     expect(companyDetails?.innerHTML).toBe("Update customer");
     expect(createCTA?.textContent).toBe("Update customer");
   });
+
+  it("render form with default values for the customer", () => {
+    const container = renderComponent("edit");
+
+    const companyName = container.querySelector("#Company") as HTMLInputElement;
+    console.log("companyName", companyName);
+
+    expect(companyName?.value).toBe("Company #1");
+  });
 });
