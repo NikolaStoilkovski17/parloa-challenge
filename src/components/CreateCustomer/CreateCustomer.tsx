@@ -82,7 +82,7 @@ export const CreateCustomer = ({
           }) => (
             <Box display={"flex"}>
               <Box display={"flex"} flexDirection={"column"}>
-                <h3>
+                <h3 className="company-details">
                   {mode === "create" ? "Create customer" : "Update customer"}
                 </h3>
                 <Box my={2} minWidth={300}>
@@ -141,6 +141,7 @@ export const CreateCustomer = ({
                 </Box>
                 <Box my={2}>
                   <Button
+                    id="submit-button"
                     variant="contained"
                     onClick={() => {
                       handleSubmit();
