@@ -35,7 +35,6 @@ export const CreateCustomerContainer = ({ mode }: Props) => {
           } else {
             updateCustomer(customer);
           }
-
           navigate("/");
         }}
       />

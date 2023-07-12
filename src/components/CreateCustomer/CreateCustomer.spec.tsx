@@ -1,3 +1,4 @@
+import { Customer } from "../../interfaces";
 import { CreateCustomer } from "./CreateCustomer";
 import { fireEvent, render, screen, waitFor } from "@testing-library/react";
 
@@ -10,12 +11,15 @@ const mockCustomer = {
   projects: [],
 };
 
-const onClick = jest.fn();
 const onSubmit = jest.fn();
 
-const renderComponent = (mode: "create" | "edit") => {
+const renderComponent = (mode: "create" | "edit", customer?: Customer) => {
   const { container } = render(
-    <CreateCustomer mode={mode} customer={mockCustomer} onSubmit={onSubmit} />
+    <CreateCustomer
+      mode={mode}
+      customer={customer || mockCustomer}
+      onSubmit={onSubmit}
+    />
   );
 
   return container;
@@ -67,31 +71,40 @@ describe("CreateCustomer should", () => {
     expect(projectStartDate?.value).toBe("2023-01-01");
   });
 
-  // TO-DO: Adjust tests
-  it("render customer form with validation errors", async () => {
-    const container = renderComponent("create");
+  it("render customer form with validation errors if fields are not entered", async () => {
+    const container = renderComponent("create", {
+      id: "12345",
+      isActive: true,
+      company: "",
+      about: "",
+      industry: "",
+      projects: [],
+    });
 
-    const companyDetails = container.querySelector(".company-details");
     const createCTA = container.querySelector(
       "#submit-button"
     ) as HTMLButtonElement;
 
     fireEvent.click(await createCTA);
 
-    // screen.debug();
+    const companyErrorMessage = screen.findByText("Company name is required");
+    const aboutErrorMessage = screen.findByText("About is required");
+    const industryErrorMessage = screen.findByText("Industry is required");
+    const projectNameErrorMessage = screen.findByText(
+      "Project name is required"
+    );
+    const projectContactErrorMessage = screen.findByText(
+      "Enter valid email address"
+    );
+    const projectStartDateErrorMessage = screen.findByText(
+      "Start date is required"
+    );
 
-    await waitFor(() => {
-      const test = screen.findByText("Industry is required");
-      console.log("test", test);
-
-      expect(test).toBe("false");
-    });
-
-    // console.log("container", container);
-
-    // expect(
-    //   await screen.findByText("Company name is required")
-    // ).toBeInTheDocument();
-    // expect(errorMessageForCompanyName.innerHTML).toBe("test");
+    expect(companyErrorMessage).toBeTruthy();
+    expect(aboutErrorMessage).toBeTruthy();
+    expect(industryErrorMessage).toBeTruthy();
+    expect(projectNameErrorMessage).toBeTruthy();
+    expect(projectContactErrorMessage).toBeTruthy();
+    expect(projectStartDateErrorMessage).toBeTruthy();
   });
 });

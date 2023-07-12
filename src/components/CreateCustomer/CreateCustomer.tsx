@@ -2,16 +2,7 @@ import React from "react";
 
 import Box from "@mui/material/Box";
 import { Customer } from "../../interfaces/customer.interface";
-import {
-  Button,
-  FormControl,
-  FormGroup,
-  FormHelperText,
-  Input,
-  InputLabel,
-  TextField,
-  Typography,
-} from "@mui/material";
+import { Button, FormControl, TextField } from "@mui/material";
 import { Formik, FieldArray } from "formik";
 import * as Yup from "yup";
 import { v4 as uuidv4 } from "uuid";
@@ -27,7 +18,6 @@ export const CreateCustomer = ({
   mode,
   onSubmit,
 }: CreateCustomerProps) => {
-  console.log("customer", customer);
   return (
     <React.Fragment>
       <Box p={3} display={"flex"}>
@@ -62,8 +52,6 @@ export const CreateCustomer = ({
             ),
           })}
           onSubmit={(values, errors) => {
-            // console.log("on submit WAS CALLED", values, errors);
-
             onSubmit({
               ...values,
               id: customer?.id || `${uuidv4()}`,
@@ -144,7 +132,6 @@ export const CreateCustomer = ({
                     id="submit-button"
                     variant="contained"
                     onClick={() => {
-                      console.log("onButtonClicked");
                       handleSubmit();
                     }}
                   >
@@ -160,8 +147,6 @@ export const CreateCustomer = ({
                         <h3>Projects</h3>
                       </Box>
                       {values.projects.map((project, index) => {
-                        // console.log("errors", errors);
-                        console.log("project", project);
                         return (
                           <Box key={index} ml={3} mt={3}>
                             <Box my={2} style={{ paddingTop: "10px" }}>
@@ -191,7 +176,6 @@ export const CreateCustomer = ({
                                       : ""
                                   }
                                   onChange={(event) => {
-                                    console.log("ev", event);
                                     setFieldValue(
                                       `projects[${index}].name`,
                                       event.target.value
@@ -234,7 +218,6 @@ export const CreateCustomer = ({
                                       : ""
                                   }
                                   onChange={(event) => {
-                                    console.log("ev", event);
                                     setFieldValue(
                                       `projects[${index}].contact`,
                                       event.target.value
@@ -286,7 +269,6 @@ export const CreateCustomer = ({
                                     }
                                     InputLabelProps={{ shrink: true }}
                                     onChange={(event) => {
-                                      console.log("ev", event);
                                       setFieldValue(
                                         `projects[${index}].start_date`,
                                         event.target.value
@@ -316,7 +298,6 @@ export const CreateCustomer = ({
                                   }
                                   InputLabelProps={{ shrink: true }}
                                   onChange={(event) => {
-                                    console.log("ev", event);
                                     setFieldValue(
                                       `projects[${index}].end_date`,
                                       event.target.value
