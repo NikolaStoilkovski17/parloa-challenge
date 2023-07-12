@@ -34,7 +34,7 @@ describe("CustomersList should", () => {
     expect(errorMessage).toBeTruthy();
   });
 
-  it("render error message if fetching fails", () => {
+  it("render loaders if it is still loading", () => {
     const container = renderComponent(false, true);
 
     const loadersWrapper = container.querySelector(".customers-list-wrapper");
@@ -42,7 +42,7 @@ describe("CustomersList should", () => {
     expect(loadersWrapper).toBeInTheDocument();
   });
 
-  it("render error message if fetching fails", () => {
+  it("render message that you do not have customers", () => {
     renderComponent(false, false, []);
 
     const errorMessage = screen.getByText("You don't have any customers ...");
