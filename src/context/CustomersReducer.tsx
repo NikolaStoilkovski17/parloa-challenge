@@ -23,8 +23,6 @@ export default (state: State, action: Action) => {
       return {
         ...state,
         customers: action.payload,
-        // TO-DO: Double check this
-        // filteredCustomers: action.payload,
       };
     case Actions.SET_FILTERED_CUSTOMERS:
       return {

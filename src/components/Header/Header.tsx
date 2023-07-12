@@ -9,8 +9,8 @@ export const Header = ({}) => {
 
   return (
     <React.Fragment>
-      <Box className="header-wrapper" mb={5}>
-        <h2>Customers home page</h2>
+      <Box textAlign={"center"} className="header-wrapper" mt={3} mb={5} pt={3}>
+        <h1>Customers Home Page</h1>
         <Button
           variant="outlined"
           onClick={() => navigate(`/create-customer/${uuidv4()}`)}
