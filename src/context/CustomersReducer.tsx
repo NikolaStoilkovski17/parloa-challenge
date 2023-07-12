@@ -1,5 +1,5 @@
 import { State } from "../interfaces";
-import { getFilteredCustomers } from "../utils";
+import { getFilteredCustomers, updateCustomer } from "../utils";
 
 export enum Actions {
   SET_CUSTOMERS = "SET_CUSTOMERS",
@@ -58,17 +58,13 @@ export default (state: State, action: Action) => {
         customers: [...state.customers, action.payload],
       };
     case Actions.UPDATE_CUSTOMER:
-      // TO-DO: Extract as util
-      const result = state.customers.map((customer) => {
-        if (customer.id === action.payload.id) {
-          return action.payload;
-        } else {
-          return customer;
-        }
-      });
+      const customersWithUpdatedCustomer = updateCustomer(
+        state.customers,
+        action.payload
+      );
       return {
         ...state,
-        customers: result,
+        customers: customersWithUpdatedCustomer,
       };
     case Actions.DELETE_CUSTOMER:
       const updatedCustomers = state.customers.filter(
