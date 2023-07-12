@@ -8,7 +8,7 @@ import Button from "@mui/material/Button";
 import Typography from "@mui/material/Typography";
 import { Customer } from "../../interfaces/customer.interface";
 import FolderIcon from "@mui/icons-material/Folder";
-import "./CustomerCard";
+import "./CustomerCard.css";
 import { useNavigate } from "react-router";
 
 interface CustomerCardProps {
