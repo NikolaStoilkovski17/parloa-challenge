@@ -13,6 +13,7 @@ export const ManageCustomerContainer = ({ mode }: Props) => {
     useContext(Context);
   const location = useLocation();
 
+  // TO-DO: Extract in util
   const customerId = location.pathname.split(`/${mode}-customer/`)[1];
   const selectedCustomer = customers.filter(
     (customer) => customer.id === customerId

@@ -4,9 +4,7 @@ import { Customer } from "../../interfaces/customer.interface";
 import { CustomersList } from "../../components/CustomersList/CustomersList";
 import { Context } from "../../context/GlobalState";
 
-interface CustomersContainerProps {}
-
-export const CustomersContainer = ({}: CustomersContainerProps) => {
+export const CustomersContainer = () => {
   const {
     isLoading,
     customers,

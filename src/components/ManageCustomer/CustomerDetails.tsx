@@ -31,7 +31,7 @@ export const CustomerDetails = ({ mode }: CustomerDetailsProps) => {
               name="company"
               label="Company Name"
               value={formik.values.company}
-              error={formik.touched.company && Boolean(!!formik.errors.company)}
+              error={formik.touched.company && Boolean(formik.errors.company)}
               helperText={formik.touched.company && formik.errors.company}
               onChange={(event) =>
                 formik.setFieldValue("company", event.target.value)
@@ -55,7 +55,7 @@ export const CustomerDetails = ({ mode }: CustomerDetailsProps) => {
               onBlur={(event) =>
                 formik.setFieldValue("about", event.target.value)
               }
-              error={formik.touched.about && Boolean(!!formik.errors.about)}
+              error={formik.touched.about && Boolean(formik.errors.about)}
               helperText={formik.touched.about && formik.errors.about}
             />
           </FormControl>
@@ -73,9 +73,7 @@ export const CustomerDetails = ({ mode }: CustomerDetailsProps) => {
               onBlur={(event) =>
                 formik.setFieldValue("industry", event.target.value)
               }
-              error={
-                formik.touched.industry && Boolean(!!formik.errors.industry)
-              }
+              error={formik.touched.industry && Boolean(formik.errors.industry)}
               helperText={formik.touched.industry && formik.errors.industry}
             />
           </FormControl>

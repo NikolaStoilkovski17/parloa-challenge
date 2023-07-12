@@ -1,7 +1,12 @@
 import React from "react";
 import StyledEngineProvider from "@mui/material/StyledEngineProvider";
 import { ContextProvider } from "./context/GlobalState";
-import { Route, BrowserRouter as Router, Routes } from "react-router-dom";
+import {
+  Navigate,
+  Route,
+  BrowserRouter as Router,
+  Routes,
+} from "react-router-dom";
 import { HomePageContainer } from "./containers/HomePageContainer";
 import { ManageCustomerContainer } from "./containers/ManageCustomerContainer";
 
@@ -22,6 +27,7 @@ function App() {
               path="/edit-customer/:id"
               element={<ManageCustomerContainer mode="edit" />}
             />
+            <Route path="*" element={<Navigate to={"/"} />} />
           </Routes>
         </Router>
       </StyledEngineProvider>

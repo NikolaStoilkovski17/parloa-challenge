@@ -38,6 +38,7 @@ export const CustomersList = ({
             <Box key={customer.id}>
               <CustomerCard
                 customer={customer}
+                hasError={hasError}
                 onDeleteCustomer={() => onDeleteCustomer(customer)}
               />
             </Box>

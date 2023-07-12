@@ -8,22 +8,34 @@ import Button from "@mui/material/Button";
 import Typography from "@mui/material/Typography";
 import { Customer } from "../../interfaces/customer.interface";
 import FolderIcon from "@mui/icons-material/Folder";
-import "./CustomerCard.css";
 import { useNavigate } from "react-router";
 
 interface CustomerCardProps {
   customer: Customer;
+  hasError: boolean;
   onDeleteCustomer: (customer: Customer) => void;
 }
 
 export const CustomerCard = ({
   customer,
+  hasError,
   onDeleteCustomer,
 }: CustomerCardProps) => {
   const navigate = useNavigate();
 
-  if (!customer) {
-    return <div> Error ...</div>;
+  if (hasError) {
+    return (
+      <Card
+        sx={{
+          minWidth: 275,
+          minHeight: 220,
+          border: "1px solid black",
+        }}
+      >
+        The is an error with loading the customer. Please ask customer support
+        for help!
+      </Card>
+    );
   }
 
   return (
@@ -45,6 +57,7 @@ export const CustomerCard = ({
               {customer.company}
             </Typography>
             <Typography
+              id="customer-status"
               variant="h6"
               color={customer.isActive ? "green" : "red"}
             >
@@ -59,11 +72,13 @@ export const CustomerCard = ({
           </Typography>
           <Box display="flex" alignItems="center" mt={2}>
             {customer.projects.length ? (
-              <>
+              <Box id="projects-icon">
                 <FolderIcon /> <Box ml={1}>{customer.projects.length}</Box>
-              </>
+              </Box>
             ) : (
-              "The customer has no projects"
+              <span id="no-projects-description">
+                "The customer has no projects"
+              </span>
             )}
           </Box>
         </CardContent>
@@ -78,6 +93,7 @@ export const CustomerCard = ({
               <>
                 <Box mr={2}>
                   <Button
+                    id="edit-button"
                     variant="outlined"
                     size="small"
                     onClick={() => navigate(`/edit-customer/${customer.id}`)}
@@ -87,6 +103,7 @@ export const CustomerCard = ({
                 </Box>
                 {!customer.isActive ? (
                   <Button
+                    id="delete-button"
                     variant="outlined"
                     color="error"
                     size="small"
@@ -98,6 +115,7 @@ export const CustomerCard = ({
               </>
             ) : (
               <Button
+                id="create-your-first-project-button"
                 variant="outlined"
                 size="small"
                 onClick={() => navigate(`/edit-customer/${customer.id}`)}
