@@ -41,12 +41,11 @@ export const CustomerCard = ({
             alignItems="center"
             justifyContent="space-between"
           >
-            <Typography variant="h5" component="div">
+            <Typography variant="h6" component="div">
               {customer.company}
             </Typography>
             <Typography
               variant="h6"
-              gutterBottom
               color={customer.isActive ? "green" : "red"}
             >
               {customer.isActive ? "Active" : "Inactive"}
@@ -56,7 +55,7 @@ export const CustomerCard = ({
             {customer.industry}
           </Typography>
           <Typography variant="body2">
-            {customer.about.slice(0, 50)}...
+            {customer.about.slice(0, 30)}...
           </Typography>
           <Box display="flex" alignItems="center" mt={2}>
             {customer.projects.length ? (

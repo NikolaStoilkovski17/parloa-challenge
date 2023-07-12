@@ -33,6 +33,7 @@ export const CreateCustomer = ({
       <Box p={3} display={"flex"}>
         <Formik
           initialValues={{
+            shouldShowProjects: false,
             company: customer?.company || "",
             about: customer?.about || "",
             industry: customer?.industry || "",
@@ -43,31 +44,30 @@ export const CreateCustomer = ({
                     id: uuidv4(),
                     name: "",
                     contact: "",
-                    startDate: "2023-01-01",
-                    endDate: "",
+                    start_date: new Date("2023-01-01"),
                   },
                 ],
           }}
           validationSchema={Yup.object({
-            company: Yup.string().required("This is required"),
-            about: Yup.string().required("This is required"),
-            industry: Yup.string().required("This is required"),
+            company: Yup.string().required("Company name is required"),
+            about: Yup.string().required("About is required"),
+            industry: Yup.string().required("Industry is required"),
             projects: Yup.array().of(
               Yup.object({
                 id: Yup.string().required("This is required"),
-                name: Yup.string().required("This is required"),
+                name: Yup.string().required("Project name is required"),
                 contact: Yup.string().required("Enter valid email address"),
-                startDate: Yup.string().required("This is required"),
+                start_date: Yup.string().required("Start date is required"),
               })
             ),
           })}
           onSubmit={(values, errors) => {
-            console.log("on submit", values, errors);
+            // console.log("on submit WAS CALLED", values, errors);
 
             onSubmit({
               ...values,
               id: customer?.id || `${uuidv4()}`,
-              isActive: values.projects.some((project) => !project.endDate),
+              isActive: values.projects.some((project) => !project.end_date),
             });
           }}
         >
@@ -144,6 +144,7 @@ export const CreateCustomer = ({
                     id="submit-button"
                     variant="contained"
                     onClick={() => {
+                      console.log("onButtonClicked");
                       handleSubmit();
                     }}
                   >
@@ -159,7 +160,8 @@ export const CreateCustomer = ({
                         <h3>Projects</h3>
                       </Box>
                       {values.projects.map((project, index) => {
-                        console.log("errors", errors);
+                        // console.log("errors", errors);
+                        console.log("project", project);
                         return (
                           <Box key={index} ml={3} mt={3}>
                             <Box my={2} style={{ paddingTop: "10px" }}>
@@ -255,38 +257,44 @@ export const CreateCustomer = ({
                                     name={`projects${[index]}.startDate`}
                                     label="Start date"
                                     type="date"
-                                    value={project.startDate}
+                                    value={
+                                      project.start_date
+                                        ? new Date(project.start_date)
+                                            .toISOString()
+                                            .substring(0, 10)
+                                        : "2023-01-01"
+                                    }
                                     error={
                                       !!(
                                         touched.projects?.length &&
-                                        touched.projects![index]?.startDate &&
+                                        touched.projects![index]?.start_date &&
                                         Boolean(
                                           errors.projects?.length
                                             ? (errors as any)?.projects[index]
-                                                ?.startDate
+                                                ?.start_date
                                             : false
                                         )
                                       )
                                     }
                                     helperText={
                                       touched.projects?.length &&
-                                      touched.projects![index]?.startDate &&
+                                      touched.projects![index]?.start_date &&
                                       errors.projects?.length
                                         ? (errors as any)?.projects[index]
-                                            ?.startDate
+                                            ?.start_date
                                         : ""
                                     }
                                     InputLabelProps={{ shrink: true }}
                                     onChange={(event) => {
                                       console.log("ev", event);
                                       setFieldValue(
-                                        `projects[${index}].startDate`,
+                                        `projects[${index}].start_date`,
                                         event.target.value
                                       );
                                     }}
                                     onBlur={(event) =>
                                       setFieldValue(
-                                        `projects[${index}].startDate`,
+                                        `projects[${index}].start_date`,
                                         event.target.value
                                       )
                                     }
@@ -294,27 +302,29 @@ export const CreateCustomer = ({
                                 </FormControl>
                               </Box>
                               <FormControl>
-                                {/* <DateField label="Basic date field" /> */}
-                                {/* <InputLabel htmlFor="end-date">End date</InputLabel>
-                        <Input id="end-date" type="date" value={"2023-12-31"} /> */}
                                 <TextField
                                   id="End-date"
-                                  name={`projects${[index]}.endDate`}
+                                  name={`projects${[index]}.end_date`}
                                   label="End date"
                                   type="date"
-                                  value={project.endDate}
-                                  // error={Boolean(errors.projects?.length)}
+                                  value={
+                                    project.end_date
+                                      ? new Date(project.end_date)
+                                          .toISOString()
+                                          .substring(0, 10)
+                                      : "2023-12-31"
+                                  }
                                   InputLabelProps={{ shrink: true }}
                                   onChange={(event) => {
                                     console.log("ev", event);
                                     setFieldValue(
-                                      `projects[${index}].endDate`,
+                                      `projects[${index}].end_date`,
                                       event.target.value
                                     );
                                   }}
                                   onBlur={(event) =>
                                     setFieldValue(
-                                      `projects[${index}].endDate`,
+                                      `projects[${index}].end_date`,
                                       event.target.value
                                     )
                                   }

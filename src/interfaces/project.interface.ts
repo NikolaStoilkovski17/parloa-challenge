@@ -1,8 +1,7 @@
 export interface Project {
   contact: string;
-  endDate?: Date | string;
+  end_date?: Date;
   id: string;
   name: string;
-  // TO-DO: Adjust only to Date
-  startDate: Date | string;
+  start_date: Date;
 }
