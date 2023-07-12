@@ -1,11 +1,18 @@
-import { Customer } from "../../interfaces";
+import { Customer } from "../interfaces";
 
 export const mockedCustomers: Customer[] = [
   {
     id: "1",
     about: "Lorem ..",
     industry: "tech",
-    projects: [],
+    projects: [
+      {
+        id: "123",
+        contact: "test@gmail.com",
+        name: "Company name",
+        start_date: new Date("2023-01-01"),
+      },
+    ],
     company: "Company 1",
     isActive: false,
   },

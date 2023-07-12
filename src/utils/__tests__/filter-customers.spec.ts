@@ -1,6 +1,6 @@
 import { Customer } from "../../interfaces";
 import { getFilteredCustomers } from "../filter-customers";
-import { mockedCustomers } from "./mock-customers";
+import { mockedCustomers } from "../../mocks";
 
 describe("getFilteredCustomers should", () => {
   it("return filtered customers that match the filters", () => {

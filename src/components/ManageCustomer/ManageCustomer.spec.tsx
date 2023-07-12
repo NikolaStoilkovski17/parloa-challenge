@@ -85,7 +85,7 @@ describe("ManageCustomer should", () => {
       "#submit-button"
     ) as HTMLButtonElement;
 
-    fireEvent.click(await createCTA);
+    fireEvent.click(createCTA);
 
     const companyErrorMessage = screen.findByText("Company name is required");
     const aboutErrorMessage = screen.findByText("About is required");

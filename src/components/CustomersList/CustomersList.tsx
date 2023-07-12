@@ -3,7 +3,7 @@ import { Customer } from "../../interfaces/customer.interface";
 import { CustomerCard } from "../CustomerCard/CustomerCard";
 import { Box } from "@mui/material";
 import "./CustomersList.css";
-import CustomerCardLoader from "../CustomerCardLoaders/CustomerCardLoaders";
+import CustomerCardLoaders from "../CustomerCardLoaders/CustomerCardLoaders";
 
 interface CustomersListProps {
   customers: Customer[];
@@ -23,14 +23,13 @@ export const CustomersList = ({
   }
 
   if (isLoading) {
-    return <CustomerCardLoader />;
+    return <CustomerCardLoaders />;
   }
 
   if (!customers.length) {
-    return <div>You don't have any customers ... </div>;
+    return <div>You don't have any customers ...</div>;
   }
 
-  // TO-DO: Add tests for all the variants
   return (
     <React.Fragment>
       <div className="customers-list-wrapper">

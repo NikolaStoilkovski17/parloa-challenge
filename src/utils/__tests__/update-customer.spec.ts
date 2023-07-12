@@ -1,5 +1,5 @@
 import { updateCustomer } from "../update-customer";
-import { mockedCustomers } from "./mock-customers";
+import { mockedCustomers } from "../../mocks/mock-customers";
 
 describe("updateCustomer should", () => {
   it("return array with updated customer", () => {

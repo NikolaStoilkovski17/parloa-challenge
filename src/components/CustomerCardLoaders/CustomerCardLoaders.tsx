@@ -6,9 +6,9 @@ import { Box } from "@mui/material";
 export default function CustomerCardLoaders() {
   return (
     <div className="customers-list-wrapper">
-      {[...Array(12)].map((loader) => {
+      {[...Array(12)].map((loader, index) => {
         return (
-          <Stack spacing={2} m={1}>
+          <Stack spacing={2} m={1} key={index}>
             <Skeleton variant="text" width={"80%"} height={40} />
             <Skeleton variant="text" width={"20%"} height={20} />
             <Skeleton variant="text" width={"40%"} height={20} />
