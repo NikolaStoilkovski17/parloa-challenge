@@ -1,5 +1,5 @@
 import { Customer } from "../../interfaces";
-import { CreateCustomer } from "./CreateCustomer";
+import { ManageCustomer } from "./ManageCustomer";
 import { fireEvent, render, screen, waitFor } from "@testing-library/react";
 
 const mockCustomer = {
@@ -15,7 +15,7 @@ const onSubmit = jest.fn();
 
 const renderComponent = (mode: "create" | "edit", customer?: Customer) => {
   const { container } = render(
-    <CreateCustomer
+    <ManageCustomer
       mode={mode}
       customer={customer || mockCustomer}
       onSubmit={onSubmit}
@@ -25,7 +25,7 @@ const renderComponent = (mode: "create" | "edit", customer?: Customer) => {
   return container;
 };
 
-describe("CreateCustomer should", () => {
+describe("ManageCustomer should", () => {
   it("render create customer form with respective copy", () => {
     const container = renderComponent("create");
 

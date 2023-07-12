@@ -7,17 +7,17 @@ import { Formik, FieldArray } from "formik";
 import * as Yup from "yup";
 import { v4 as uuidv4 } from "uuid";
 
-interface CreateCustomerProps {
+interface ManageCustomerProps {
   customer: Customer;
   mode: "create" | "edit";
   onSubmit: (values: Customer) => void;
 }
 
-export const CreateCustomer = ({
+export const ManageCustomer = ({
   customer,
   mode,
   onSubmit,
-}: CreateCustomerProps) => {
+}: ManageCustomerProps) => {
   return (
     <React.Fragment>
       <Box p={3} display={"flex"}>

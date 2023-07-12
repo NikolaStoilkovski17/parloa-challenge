@@ -3,7 +3,7 @@ import StyledEngineProvider from "@mui/material/StyledEngineProvider";
 import { ContextProvider } from "./context/GlobalState";
 import { Route, BrowserRouter as Router, Routes } from "react-router-dom";
 import { HomePageContainer } from "./containers/HomePageContainer";
-import { CreateCustomerContainer } from "./containers/CreateCustomerContainer";
+import { ManageCustomerContainer } from "./containers/ManageCustomerContainer";
 
 import "./App.css";
 
@@ -16,11 +16,11 @@ function App() {
             <Route path="/" element={<HomePageContainer />} />
             <Route
               path="/create-customer/:id"
-              element={<CreateCustomerContainer mode="create" />}
+              element={<ManageCustomerContainer mode="create" />}
             />
             <Route
               path="/edit-customer/:id"
-              element={<CreateCustomerContainer mode="edit" />}
+              element={<ManageCustomerContainer mode="edit" />}
             />
           </Routes>
         </Router>

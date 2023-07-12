@@ -1,5 +1,5 @@
 import React, { useContext } from "react";
-import { CreateCustomer } from "../../components/CreateCustomer";
+import { ManageCustomer } from "../../components/ManageCustomer";
 import { Context } from "../../context/GlobalState";
 import { useLocation, useNavigate } from "react-router";
 import { Box, Button } from "@mui/material";
@@ -8,7 +8,7 @@ interface Props {
   mode: "create" | "edit";
 }
 
-export const CreateCustomerContainer = ({ mode }: Props) => {
+export const ManageCustomerContainer = ({ mode }: Props) => {
   const { customers, createCustomer, updateCustomer, setCustomers } =
     useContext(Context);
   const location = useLocation();
@@ -26,7 +26,7 @@ export const CreateCustomerContainer = ({ mode }: Props) => {
           Go back to home page
         </Button>
       </Box>
-      <CreateCustomer
+      <ManageCustomer
         mode={mode}
         customer={selectedCustomer}
         onSubmit={(customer) => {
