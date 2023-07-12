@@ -3,6 +3,7 @@ import { ManageCustomer } from "../../components/ManageCustomer";
 import { Context } from "../../context/GlobalState";
 import { useLocation, useNavigate } from "react-router";
 import { Box, Button } from "@mui/material";
+import { getSelectedCustomer } from "../../utils";
 
 interface Props {
   mode: "create" | "edit";
@@ -13,11 +14,7 @@ export const ManageCustomerContainer = ({ mode }: Props) => {
     useContext(Context);
   const location = useLocation();
 
-  // TO-DO: Extract in util
-  const customerId = location.pathname.split(`/${mode}-customer/`)[1];
-  const selectedCustomer = customers.filter(
-    (customer) => customer.id === customerId
-  )[0];
+  const selectedCustomer = getSelectedCustomer(customers, location.pathname);
   const navigate = useNavigate();
 
   return (
